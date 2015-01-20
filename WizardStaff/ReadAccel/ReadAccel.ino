@@ -19,8 +19,6 @@ int ANALOG_X = 0;
 int ANALOG_Y = 1;
 int ANALOG_Z = 2;
 
-int red_light;
-
 // Millis for light to stay on
 int RED_DURATION= 10;
 unsigned long red_light_start = 0;
@@ -49,22 +47,22 @@ int vertical_direction(int vertical_read) {
 
 int last_read = 0;
 
-int load_stats(int read, int motion, int min, int max,int light) {
+int load_stats(int read_value, int motion_value, int min_value, int max_value,int light_value) {
   int variation = last_read * .01; 
-  if (read > last_read + variation || read < last_read - variation) {
+  if (read_value > last_read + variation || read_value < last_read - variation) {
     Serial.print(millis(),DEC);
     Serial.print(",");
-    Serial.print(read,DEC);
+    Serial.print(read_value,DEC);
     Serial.print(",");
-    Serial.print(motion,DEC);
+    Serial.print(motion_value,DEC);
     Serial.print(",");
-    Serial.print(min,DEC);
+    Serial.print(min_value,DEC);
     Serial.print(",");
-    Serial.print(max,DEC);
+    Serial.print(max_value,DEC);
     Serial.print(",");
-    Serial.print(light,DEC);
+    Serial.print(light_value,DEC);
     Serial.println("");
-    last_read = read;
+    last_read = read_value;
   }
 }
 
